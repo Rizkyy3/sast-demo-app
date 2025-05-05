@@ -67,6 +67,29 @@ pipeline {
         }
     }
 }
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Rizkyy3/sast-demo-app.git', branch: 'master'
+            }
+        }
+
+        stage('Install Bandit') {
+            steps {
+                sh 'pip install bandit'
+            }
+        }
+
+        stage('Run Bandit') {
+            steps {
+                sh 'bandit -r . || true'
+            }
+        }
+    }
+}
 <<<<<<< HEAD
 pipeline {
     agent any  // Menjalankan pipeline di mesin mana saja yang tersedia
