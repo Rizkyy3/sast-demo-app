@@ -209,5 +209,4 @@ pipeline {
         }
     }
 }
-056208d (Add Jenkinsfile for SAST pipeline)
 
