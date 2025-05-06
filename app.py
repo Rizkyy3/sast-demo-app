@@ -1,12 +1,13 @@
 import subprocess
+import shlex
 
 def greet(name):
     print(f"Hello, {name}!")
 
 def run_command(cmd):
-    # WARNING: Kerentanan command injection
-    # Bandit akan mendeteksi baris ini karena penggunaan shell=True
-    subprocess.call(cmd, shell=True)
+    # Memastikan bahwa cmd dipecah dengan aman dan tanpa shell=True
+    args = shlex.split(cmd)
+    subprocess.call(args)
 
 if __name__ == "__main__":
     name = input("Enter your name: ")
