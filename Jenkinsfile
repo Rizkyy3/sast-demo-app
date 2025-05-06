@@ -182,7 +182,7 @@ pipeline {
         }
     }
 }
-<<<<<<< HEAD
+HEAD
 pipeline {
     agent any  // Menjalankan pipeline di mesin mana saja yang tersedia
 
@@ -210,5 +210,5 @@ pipeline {
     }
 }
 =======
->>>>>>> 056208d (Add Jenkinsfile for SAST pipeline)
+056208d (Add Jenkinsfile for SAST pipeline)
 
