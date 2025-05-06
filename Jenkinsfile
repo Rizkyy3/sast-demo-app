@@ -1,26 +1,24 @@
 pipeline {
-    agent any  // Menjalankan pipeline di mesin mana saja yang tersedia
+    agent any
 
     stages {
         stage('Checkout') {
             steps {
-                // Mengambil kode dari repositori GitHub
                 git url: 'https://github.com/Rizkyy3/sast-demo-app.git', branch: 'master'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                // Menginstal Bandit
-                sh 'pip install bandit'
+                // Pastikan pip terinstal sebelum menjalankan Bandit
+                sh 'python3 -m ensurepip --upgrade'  // Menginstal pip jika belum terpasang
+                sh 'pip3 install bandit'  // Instal Bandit dengan pip3
             }
         }
 
         stage('SAST Analysis') {
             steps {
-                // Menjalankan Bandit dan menghasilkan output XML
                 sh 'bandit -f xml -o bandit-output.xml -r . || true'
-                // Menyimpan hasil analisis di Jenkins
                 recordIssues tools: [bandit(pattern: 'bandit-output.xml')]
             }
         }
